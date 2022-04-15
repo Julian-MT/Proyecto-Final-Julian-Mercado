@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load static %}
+
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -9,7 +11,7 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="{% static 'css\\styles.css'%}" rel="stylesheet" />
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -27,27 +29,18 @@
             </div>
         </nav>
         <!-- Header - set the background image for the header in the line below-->
-        <header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
+        <header class="py-5 bg-image-full" style="background-image: url('https://images4.alphacoders.com/109/1093009.jpg')">
             <div class="text-center my-5">
-                <img class="img-fluid rounded-circle mb-4" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="..." />
-                <h1 class="text-white fs-3 fw-bolder">Full Width Pics</h1>
+                <img class="img-fluid rounded-circle mb-4" src="https://yt3.ggpht.com/j8L_BkgnpTQjIlnhj2ulvrrHt0_gXITnVRECV-vFLXqRhcl5LHW37-gEvNDrtQGdBAMbqP91iQ=s900-c-k-c0x00ffffff-no-rj" alt="..." width="150" height="150" />
+                <h1 class="text-white fs-3 fw-bolder">Soluciones Agricolas Inteligentes</h1>
                 <p class="text-white-50 mb-0">Landing Page Template</p>
             </div>
         </header>
         <!-- Content section-->
-        <section class="py-5">
-            <div class="container my-5">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h2>Full Width Backgrounds</h2>
-                        <p class="lead">A single, lightweight helper class allows you to add engaging, full width background images to sections of your page.</p>
-                        <p class="mb-0">The universe is almost 14 billion years old, and, wow! Life had no problem starting here on Earth! I think it would be inexcusably egocentric of us to suggest that we're alone in the universe.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+       {% block Contenido %}
+       {% endblock %}
         <!-- Image element - set the background image for the header in the line below-->
-        <div class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/4ulffa6qoKA/1200x800')">
+        <div class="py-5 bg-image-full" style="background-image: url('https://images.squarespace-cdn.com/content/v1/5c5ba49a809d8e017ad51605/1574897135771-4W78V5CC4U2Z5ICR59UT/dji-4204801_960_720.jpg?format=1500w')">
             <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
             <div style="height: 20rem"></div>
         </div>
@@ -56,9 +49,23 @@
             <div class="container my-5">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <h2>Engaging Background Images</h2>
-                        <p class="lead">The background images used in this template are sourced from Unsplash and are open source and free to use.</p>
-                        <p class="mb-0">I can't tell you how many people say they were turned off from science because of a science teacher that completely sucked out all the inspiration and enthusiasm they had for the course.</p>
+                        <h2>Contacto</h2>
+                        <p class="lead">Si estas interesado en saber mas de nuestros servicios, no dudes en consultar.</p>
+                        <p class="mb-0">Deja tu nombre y tu direccion de correo junto a tus dudas, y en breve un experto de tu area de interes se pondra en contacto.</p>
+                        
+                        <form action="Efficatia/FormularioConsulta/" method="Post">{%csrf_token%}
+
+                            <ul>
+                                <li>Nombre:   <input type="text" name="nombre"  placeholder="Nombre y Apellido" ></li>
+                                <li>Email:    <input type="text" name="email"  placeholder="Direccion de correo" ></li>
+                                <li>Consulta: <input type="text" name="Consulta"  placeholder="Cual es tu duda?" ></li>
+                            </ul>
+
+                            <input type="submit" value="Enviar">
+                        </form>
+                    
+                    
+                    
                     </div>
                 </div>
             </div>
