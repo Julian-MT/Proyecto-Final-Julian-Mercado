@@ -1,0 +1,25 @@
+{% extends 'Efficatia/Padre.html'%}
+
+{% load static %}
+
+{% block Contenido %}
+
+
+<form action="Efficatia/RegistroCliente" method="POST">
+    
+
+    {{ Formulario.as_p }}
+    
+    
+    <button type="submit"> Registrar</button>
+   
+
+
+
+</form>
+
+
+    
+
+
+{% endblock %}
