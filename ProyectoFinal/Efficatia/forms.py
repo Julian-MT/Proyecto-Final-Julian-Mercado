@@ -9,9 +9,10 @@ class FormularioConsulta(forms.Form):
         fields = ('nombre', 'email', 'consulta')
 
 class FormularioRegistroCliente(forms.Form):
-    class meta:
-        model = Cliente
-        fields = ('nombre', 'email', 'empresa')
+    nombre=forms.CharField(max_length=30)
+    email=forms.EmailField()
+    empresa=forms.CharField(max_length= 500)
+
 
 class FormularioLote(forms.Form):
     class meta:
