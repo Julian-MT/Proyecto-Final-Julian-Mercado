@@ -4,11 +4,9 @@
 
 {% block Contenido %}
 
-<div>
+{% for lote in ListaLotes %}
 
-
-
-    
-</div>
+<li>{{lote}}</li>
+{%endfor%}
 
 {% endblock %}

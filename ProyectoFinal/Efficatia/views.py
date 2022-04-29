@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from Efficatia.models import Consulta, Cliente, Lote
-from Efficatia.forms import FormularioRegistroCliente
+from Efficatia.forms import FormularioRegistroCliente, FormularioLote
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
@@ -44,7 +44,7 @@ def LogInCliente(request):
         if form.is_valid():
             datos=form.cleaned_data
             usuario=datos['username']
-            psw=datos['passsword']
+            psw=datos['password']
             user= authenticate(username=usuario, password=psw)
             if user:
                 login(request, user)
@@ -58,7 +58,7 @@ def LogInCliente(request):
         return render(request, "Efficatia/LogIn.html", {"form": form})
 
 def RegistroUsuario(request):
-    if request.metrhod == "POST":
+    if request.method == "POST":
         form=UserCreationForm(request.POST)
         if form.is_valid():
             username=form.cleaned_data['username']
@@ -71,3 +71,26 @@ def RegistroUsuario(request):
 def LogOutCliente(request):
     logout(request)
     return render(request, "Efficatia/Inicio.html", {"mensaje": "Gracias, hasta la proxima!"})
+
+def ListaLotes(request):
+    if request.user:
+        IdCliente=request.user.id
+
+    Lotes=Lote.objects.get(id_cliente=IdCliente)
+    contexto={"ListaLotes":Lotes}
+    return render(request, "Efficatia/ListaLotes.html", contexto)
+
+def CrearLote(request):
+    if request.method == 'POST':
+        FormularioLoteNuevo = FormularioLote(request.POST)
+        if FormularioLoteNuevo.is_valid():
+            InformacionLote=FormularioLoteNuevo.cleaned_data()
+            NuevoLote=Lote(id_cliente=InformacionLote[''], campo=InformacionLote['campo'], lote=InformacionLote['lote'], link=InformacionLote['link'])
+            NuevoLote.save()
+            mensaje= f'Se ha registrado el lote {NuevoLote.lote} con éxito.'
+            return render(request, 'Efficatia/Inicio.html', {'mensaje':mensaje})
+    
+    else:
+        FormularioLote=FormularioLote()
+
+        return render(request, 'Efficatia/RegistroCliente.html', {"Formulario":FormularioLote})

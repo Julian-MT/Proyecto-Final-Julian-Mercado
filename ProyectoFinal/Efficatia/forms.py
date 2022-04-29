@@ -14,7 +14,8 @@ class FormularioRegistroCliente(forms.Form):
     empresa=forms.CharField(max_length= 500)
 
 
-class FormularioLote(forms.Form):
-    class meta:
-        model = Lote
-        fields = ('campo', 'lote', 'id_cliente', 'link')
+class FormularioLote(forms.ModelForm):
+    class Meta:
+        model=Lote
+        fields=('id_cliente', 'campo', 'lote', 'link' )
+
