@@ -4,9 +4,10 @@
 
 {% block Contenido %}
 
-{% for lote in ListaLotes %}
+{% for l in ListaLotes %}
 
-<li>{{lote}}</li>
+<li>{{l}}</li>
 {%endfor%}
 
+<a href="{% url 'CrearLote' %}"> Crear Lote Nuevo</a>
 {% endblock %}

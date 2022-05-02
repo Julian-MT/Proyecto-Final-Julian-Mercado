@@ -3,6 +3,8 @@ from Efficatia.models import Consulta, Cliente, Lote
 from Efficatia.forms import FormularioRegistroCliente, FormularioLote
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -24,12 +26,14 @@ def Informacion(request):
     return render(request, 'Efficatia/Inicio.html')
 
 def RegistroCliente(request):
+    
     if request.method == 'POST':
         FormularioCliente = FormularioRegistroCliente(request.POST)
         if FormularioCliente.is_valid():
-            InformacionCliente=FormularioCliente.cleaned_data()
+            InformacionCliente=FormularioCliente.cleaned_data
             NuevoCliente=Cliente(nombre=InformacionCliente['nombre'], email=InformacionCliente['email'], empresa=InformacionCliente['empresa'])
             NuevoCliente.save()
+
             mensaje= f'Se ha registrado a {NuevoCliente.nombre} con éxito.'
             return render(request, 'Efficatia/Inicio.html', {'mensaje':mensaje})
     
@@ -63,7 +67,8 @@ def RegistroUsuario(request):
         if form.is_valid():
             username=form.cleaned_data['username']
             form.save()
-            return render(request, "Efficatia/Inicio.html", {"mensaje": "Usuario Creado con exito."})
+            
+            return render(request, 'Efficatia/RegistroCliente.html', {"mensaje": "Usuario Creado con exito."})
     else:
         form = UserCreationForm()
         return render(request, "Efficatia/RegistroUsuario.html", {"form": form})
@@ -76,7 +81,7 @@ def ListaLotes(request):
     if request.user:
         IdCliente=request.user.id
 
-    Lotes=Lote.objects.get(id_cliente=IdCliente)
+    Lotes= Lote.objects.filter(id_cliente=IdCliente)
     contexto={"ListaLotes":Lotes}
     return render(request, "Efficatia/ListaLotes.html", contexto)
 
@@ -84,13 +89,13 @@ def CrearLote(request):
     if request.method == 'POST':
         FormularioLoteNuevo = FormularioLote(request.POST)
         if FormularioLoteNuevo.is_valid():
-            InformacionLote=FormularioLoteNuevo.cleaned_data()
-            NuevoLote=Lote(id_cliente=InformacionLote[''], campo=InformacionLote['campo'], lote=InformacionLote['lote'], link=InformacionLote['link'])
+            InformacionLote=FormularioLoteNuevo.cleaned_data
+            NuevoLote=Lote(id_cliente=InformacionLote['id_cliente'], campo=InformacionLote['campo'], lote=InformacionLote['lote'], link=InformacionLote['link'])
             NuevoLote.save()
             mensaje= f'Se ha registrado el lote {NuevoLote.lote} con éxito.'
             return render(request, 'Efficatia/Inicio.html', {'mensaje':mensaje})
     
     else:
-        FormularioLote=FormularioLote()
+        FormularioLoteNuevo=FormularioLote()
 
-        return render(request, 'Efficatia/RegistroCliente.html', {"Formulario":FormularioLote})
+        return render(request, 'Efficatia/CrearLote.html', {"Formulario":FormularioLote})

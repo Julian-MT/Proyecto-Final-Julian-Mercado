@@ -1,5 +1,5 @@
 from django.urls import path
-from Efficatia.views import inicio, FormularioConsulta, Informacion, RegistroCliente, LogInCliente, RegistroUsuario, LogOutCliente, ListaLotes
+from Efficatia.views import inicio, FormularioConsulta, Informacion, RegistroCliente, LogInCliente, RegistroUsuario, LogOutCliente, ListaLotes, CrearLote
 
 
 urlpatterns = [
@@ -11,7 +11,8 @@ urlpatterns = [
     path('LogIn/', LogInCliente, name='LogIn'),
     path('RegistroUsuario/', RegistroUsuario, name='RegistroUsuario'),
     path('Logout/', LogOutCliente, name='LogOut'),
-    path('ListaLotes/', ListaLotes, name='ListaLotes')
+    path('ListaLotes/', ListaLotes, name='ListaLotes'),
+    path('CrearLote/', CrearLote, name='CrearLote' ),
     
 
 ]

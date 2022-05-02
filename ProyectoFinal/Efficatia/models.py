@@ -21,6 +21,7 @@ class Cliente(models.Model):
 
     def __str__(self) -> str:
         return f'{self.nombre}, {self.email}, {self.empresa}'
+
 class Lote(models.Model):
     campo=models.CharField(max_length=30)
     lote=models.CharField(max_length=30)
