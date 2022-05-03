@@ -78,7 +78,7 @@ def RegistroUsuario(request):
         return render(request, "Efficatia/RegistroUsuario.html", {"form": form})
 
 def RegistroUsuarioExitoso(request):
-    return render('Efficatia/RegistroUsuarioExitoso.html')
+    return render(request, 'Efficatia/RegistroUsuarioExitoso.html')
 
 def LogOutCliente(request):
     logout(request)
@@ -87,10 +87,12 @@ def LogOutCliente(request):
 
 def ListaLotes(request):
     if request.user:
-        cliente=Cliente.objects.get(user_id = request.user.id)
+        try:
+            cliente=Cliente.objects.get(user_id = request.user.id)
 
-        IdCliente= cliente.id
-      
+            IdCliente= cliente.id
+        except: 
+            return render(request, "Efficatia/RegistroUsuarioExitoso.html")
     Lotes= Lote.objects.filter(id_cliente=IdCliente)
     contexto={"ListaLotes":Lotes}
     return render(request, "Efficatia/ListaLotes.html", contexto)
