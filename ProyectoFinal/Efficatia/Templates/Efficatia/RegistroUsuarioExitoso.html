@@ -1,0 +1,14 @@
+{% extends 'Efficatia/Padre.html'%}
+
+{% load static %}
+
+{% block Contenido %}
+
+{{mensaje.as_p}}
+
+ <a class="nav-link active" href="{% url 'RegistroUsuarioExitoso' %}"> Ingresa los datos de tu empresa aquí.</a>
+
+
+
+
+{% endblock %}

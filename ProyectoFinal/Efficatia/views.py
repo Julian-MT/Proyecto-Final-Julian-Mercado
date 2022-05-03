@@ -31,7 +31,7 @@ def RegistroCliente(request):
         FormularioCliente = FormularioRegistroCliente(request.POST)
         if FormularioCliente.is_valid():
             InformacionCliente=FormularioCliente.cleaned_data
-            NuevoCliente=Cliente(nombre=InformacionCliente['nombre'], email=InformacionCliente['email'], empresa=InformacionCliente['empresa'])
+            NuevoCliente=Cliente(nombre=InformacionCliente['nombre'], email=InformacionCliente['email'], empresa=InformacionCliente['empresa'], user_id=request.user.id)
             NuevoCliente.save()
 
             mensaje= f'Se ha registrado a {NuevoCliente.nombre} con éxito.'
@@ -52,7 +52,10 @@ def LogInCliente(request):
             user= authenticate(username=usuario, password=psw)
             if user:
                 login(request, user)
-                return render(request, "Efficatia/Inicio.html", {"mensaje": "Bienvenido"})
+                if request.user.last_login == None:
+                    return render(request, 'Efficatia/RegistroUsuarioExitoso.html')
+                else:
+                    return render(request, "Efficatia/Inicio.html", {"mensaje": "Bienvenido"})
             else:
                 return render(request, "Efficatia/Inicio.html", {"mensaje": "ERROR en datos ingresados"})
         else:
@@ -62,25 +65,32 @@ def LogInCliente(request):
         return render(request, "Efficatia/LogIn.html", {"form": form})
 
 def RegistroUsuario(request):
+   
     if request.method == "POST":
-        form=UserCreationForm(request.POST)
+        
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             username=form.cleaned_data['username']
             form.save()
-            
-            return render(request, 'Efficatia/RegistroCliente.html', {"mensaje": "Usuario Creado con exito."})
+        return render(request, "Efficatia/Inicio.html", {"mensaje": f"Usuario {username} creado con exito"})
     else:
         form = UserCreationForm()
         return render(request, "Efficatia/RegistroUsuario.html", {"form": form})
+
+def RegistroUsuarioExitoso(request):
+    return render('Efficatia/RegistroUsuarioExitoso.html')
 
 def LogOutCliente(request):
     logout(request)
     return render(request, "Efficatia/Inicio.html", {"mensaje": "Gracias, hasta la proxima!"})
 
+
 def ListaLotes(request):
     if request.user:
-        IdCliente=request.user.id
+        cliente=Cliente.objects.get(user_id = request.user.id)
 
+        IdCliente= cliente.id
+      
     Lotes= Lote.objects.filter(id_cliente=IdCliente)
     contexto={"ListaLotes":Lotes}
     return render(request, "Efficatia/ListaLotes.html", contexto)
