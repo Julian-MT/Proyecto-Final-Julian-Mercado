@@ -1,0 +1,29 @@
+{% extends 'Efficatia/Padre.html'%}
+
+{% load static %}
+
+{% block Contenido %}
+
+<div>
+    {%if FormularioEdicion.errors%}
+
+    <p>REVISA LOS DATOS PORFAVOR E INTENTALO DE NUEVO</p>
+    {%endif%}
+
+    <form action="" method="POST">{%csrf_token%}
+    
+        <table>
+        {{ FormularioEdicion.as_table }}
+        
+        </table>
+        <button type="submit"> Registrar</button>
+        
+    
+    
+    
+    </form>
+
+    
+</div>
+
+{% endblock %}

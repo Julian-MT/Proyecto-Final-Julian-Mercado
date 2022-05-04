@@ -1,0 +1,25 @@
+{% extends 'Efficatia/Padre.html'%}
+
+{% load static %}
+
+{% block Contenido %}
+
+<div  style="font-size: 0.5cm; color: rgb(18, 151, 11);" class="py-5">
+    <p>Dejanos tus datos y haremos lo posible por aclarar tus dudas:</p>
+    <form action="" method="POST">{%csrf_token%}
+    
+        <table>
+        {{ Formulario.as_table}}
+        </table>
+        
+        <button type="submit"> Enviar</button>
+        
+    
+    
+    
+    </form>
+   
+
+</div>
+
+{% endblock %}

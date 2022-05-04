@@ -1,0 +1,25 @@
+{% extends 'Efficatia/Padre.html'%}
+
+{% load static %}
+
+{% block Contenido %}
+
+{%if not ListaLotes%}
+<p style="font-size: 0.5cm; color: rgb(18, 151, 11);" class="py-5">No hay lotes creados.</p>
+{%endif%}
+
+{% for l in ListaLotes %}
+<table>
+<li>{{l}}</li>
+<button><a href="{% url 'EditarLote' l.id %}">Editar</a></button>
+<button><a href="{% url 'DetallesLote' l.id %}">Detalles</a></button>
+<button><a href="{% url 'EliminarLote' l.id %}">Eliminar</a></button>
+<p></p>
+</table>
+{%endfor%}
+
+
+
+
+<button><a href="{% url 'CrearLote' %}"> Crear Lote Nuevo</a></button>
+{% endblock %}
