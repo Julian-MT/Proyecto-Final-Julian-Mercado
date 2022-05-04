@@ -4,10 +4,14 @@
 
 {% block Contenido %}
 
-<form action="" method="POST"> {%csrf_token%}
-
-{{ form.as_p }}
+<form action="" method="POST"> 
+    {%csrf_token%}
+<table>
+{{ form.as_table}}
+</table>
  <button type="submit"> Registrar </button>
+
 </form>
+
 
 {% endblock %}

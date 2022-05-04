@@ -7,9 +7,9 @@
 
 <form action="" method="POST">{%csrf_token%}
     
-
-    {{ Formulario.as_p }}
-    
+    <table>
+    {{ Formulario.as_table }}
+    </table>
     
     <button type="submit"> Registrar</button>
     

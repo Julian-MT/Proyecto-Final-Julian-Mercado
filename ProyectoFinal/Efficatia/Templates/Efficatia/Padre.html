@@ -42,7 +42,7 @@
             <div class="text-center my-5">
                 <img class="img-fluid rounded-circle mb-4" src="https://yt3.ggpht.com/j8L_BkgnpTQjIlnhj2ulvrrHt0_gXITnVRECV-vFLXqRhcl5LHW37-gEvNDrtQGdBAMbqP91iQ=s900-c-k-c0x00ffffff-no-rj" alt="..." width="150" height="150" />
                 <h1 class="text-white fs-3 fw-bolder">Soluciones Agricolas Inteligentes</h1>
-                <p class="text-white-50 mb-0">Landing Page Template</p>
+                <p class="text-white-50 mb-0">Tecnologia en tu campo</p>
             </div>
         </header>
         <!-- Content section-->
@@ -62,16 +62,7 @@
                         <p class="lead">Si estas interesado en saber mas de nuestros servicios, no dudes en consultar.</p>
                         <p class="mb-0">Deja tu nombre y tu direccion de correo junto a tus dudas, y en breve un experto de tu area de interes se pondra en contacto.</p>
                         
-                        <form action="Efficatia/FormularioConsulta/" method="Post">{%csrf_token%}
-
-                            <ul>
-                                <li>Nombre:</li>   <input type="text" name="nombre"  placeholder="Nombre y Apellido" >
-                                <li>Email: </li>  <input type="text" name="email"  placeholder="Direccion de correo" >
-                                <li>Consulta:</li> <input type="text" name="Consulta"  placeholder="Cual es tu duda?" >
-                            </ul>
-
-                            <input type="submit" value="Enviar">
-                        </form>
+                       <button><a class="nav-link" href="{% url 'FormularioConsulta' %}"> Realizar una Consulta</a></button>
                     
                     
                     
@@ -81,7 +72,7 @@
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; J.M. 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -4,10 +4,21 @@
 
 {% block Contenido %}
 
-{% for l in ListaLotes %}
+{%if not ListaLotes%}
+<p style="font-size: 0.5cm; color: rgb(18, 151, 11);" class="py-5">No hay lotes creados.</p>
+{%endif%}
 
+{% for l in ListaLotes %}
+<table>
 <li>{{l}}</li>
+<button><a href="{% url 'EditarLote' l.id %}">Editar</a></button>
+<button><a href="{% url 'EliminarLote' l.id %}">Eliminar</a></button>
+<p></p>
+</table>
 {%endfor%}
 
-<a href="{% url 'CrearLote' %}"> Crear Lote Nuevo</a>
+
+
+
+<button><a href="{% url 'CrearLote' %}"> Crear Lote Nuevo</a></button>
 {% endblock %}

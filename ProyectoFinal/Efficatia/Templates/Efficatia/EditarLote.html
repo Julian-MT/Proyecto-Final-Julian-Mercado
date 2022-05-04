@@ -4,17 +4,18 @@
 
 {% block Contenido %}
 
-{{ mensaje}}
-
 <div>
+    {%if FormularioEdicion.errors%}
 
+    <p>REVISA LOS DATOS PORFAVOR E INTENTALO DE NUEVO</p>
+    {%endif%}
 
     <form action="" method="POST">{%csrf_token%}
     
-
-        {{ Formulario.as_p }}
+        <table>
+        {{ FormularioEdicion.as_table }}
         
-        
+        </table>
         <button type="submit"> Registrar</button>
         
     

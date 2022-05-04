@@ -4,9 +4,10 @@ from Efficatia.models import Consulta, Cliente, Lote
 
 
 class FormularioConsulta(forms.Form):
-    class meta:
-        model = Consulta
-        fields = ('nombre', 'email', 'consulta')
+    nombre=forms.CharField(max_length=30)
+    email=forms.EmailField()
+    consulta=forms.CharField(max_length= 500)
+        
 
 class FormularioRegistroCliente(forms.Form):
     nombre=forms.CharField(max_length=30)
