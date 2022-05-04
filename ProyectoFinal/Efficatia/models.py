@@ -11,7 +11,7 @@ class Consulta(models.Model):
     consultaa=models.CharField(max_length= 500)
 
     def __str__(self) -> str:
-        return f'{self.nombre}, {self.email}, {self.consultaa}'
+        return f'{self.nombre}/// {self.email}/// {self.consultaa}'
 
 class Cliente(models.Model):
     user=models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -20,7 +20,7 @@ class Cliente(models.Model):
     empresa=models.CharField(max_length= 500)
 
     def __str__(self) -> str:
-        return f'{self.nombre}, {self.email}, {self.empresa}'
+        return f'{self.nombre}/// {self.empresa}'
 
 class Lote(models.Model):
     campo=models.CharField(max_length=30)
@@ -29,4 +29,4 @@ class Lote(models.Model):
     link=models.CharField(max_length=1000, blank=True, null=True)
     
     def __str__(self) -> str:
-        return f'{self.campo}, {self.lote}'
+        return f'{self.campo}/// {self.lote}'

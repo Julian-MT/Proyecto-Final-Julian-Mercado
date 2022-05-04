@@ -1,0 +1,22 @@
+{% extends 'Efficatia/Padre.html'%}
+
+{% load static %}
+
+{% block Contenido %}
+
+<div  style="font-size: 0.8cm; color: rgb(18, 151, 11);" class="py-5">
+
+    <table>
+    <p>Nombre del campo: {{NombreCampo}} </p>
+    <p></p>
+    <p>Nombre del lote: {{NombreLote}}</p>
+    <p></p>
+    <p>Link del proyecto: {{Link}}</p>
+    <p></p>
+    <button><a href="{% url 'ListaLotes' %}">Volver</a></button>
+    </table>
+
+    
+</div>
+
+{% endblock %}

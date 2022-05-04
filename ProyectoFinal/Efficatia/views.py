@@ -48,7 +48,7 @@ def RegistroCliente(request):
 
             return render(request, 'Efficatia/RegistroCliente.html', {"Formulario":FormularioCliente})
     except:
-        return render(request, 'Efficatia/Notificacion.html', {'mensaje': 'Este usuario ya tiene un cliente creado'})
+        return render(request, 'Efficatia/Notificacion.html', {'mensaje': 'Este usuario ya tiene un cliente creado. Si desea modificar los datos pongase en contacto con nosotros.'})
 
 
 def LogInCliente(request):
@@ -163,6 +163,16 @@ def EditarLote(request, ID):
     else:
         FormularioEdicion=FormularioLote(initial={'campo':LoteRegistrado.campo, 'lote':LoteRegistrado.lote, 'id_cliente':LoteRegistrado.id_cliente, 'link':LoteRegistrado.link})
         return render(request, 'Efficatia/EditarLote.html', {'FormularioEdicion':FormularioEdicion})
+
+@login_required
+def DetallesLote(request, ID):
+    Lot=Lote.objects.get(id=ID)
+    NombreCampo=Lot.campo
+    NombreLote=Lot.lote
+    Link=Lot.link
+    return render(request, 'Efficatia/DetallesLote.html', {'NombreCampo':NombreCampo, 'NombreLote':NombreLote, 'Link':Link})
+
+
 
 @login_required
 def EliminarLote(request, ID):
