@@ -30,3 +30,8 @@ class Lote(models.Model):
     
     def __str__(self) -> str:
         return f'{self.campo}/// {self.lote}'
+
+
+class Vuelo(models.Model):
+    id_lote=models.ForeignKey(Lote, on_delete=models.CASCADE)
+    fecha=models.DateField(blank=True, null=True)

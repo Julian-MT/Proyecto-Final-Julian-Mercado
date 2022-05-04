@@ -1,6 +1,6 @@
 from django import forms
 
-from Efficatia.models import Consulta, Cliente, Lote
+from Efficatia.models import Consulta, Cliente, Lote, Vuelo
 
 
 class FormularioConsulta(forms.Form):
@@ -19,4 +19,9 @@ class FormularioLote(forms.ModelForm):
     class Meta:
         model=Lote
         fields=('id_cliente', 'campo', 'lote', 'link' )
+
+class FormularioVuelo(forms.ModelForm):
+    class Meta:
+        model=Vuelo
+        fields=('id_lote', 'fecha')
 
